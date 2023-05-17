@@ -37,6 +37,7 @@ def main_func(func):
 
             # Outer function to be executed
             res = func(*args, **kwargs)
+            time.sleep(1)
             return res
 
         except Exception as ex:
@@ -51,9 +52,10 @@ def main_func(func):
 
 
 @main_func
-def post_func():
-    print("Test")
+def post_func(user_id):
+    driver.get(f"https://www.linkedin.com/in/{user_id}/overlay/create-post/")
+    driver.find_element(By.ID, "ember413").click()
 
 
 if __name__ == "__main__":
-    post_func("Test")
+    post_func(os.getenv("USER_ID"))
