@@ -53,23 +53,19 @@ def main_func(func):
 
 
 @main_func
-def post_func(user_id, message):
-    driver.get(f"https://www.linkedin.com/in/{user_id}/overlay/create-post/")
-    input_field = driver.find_element(By.TAG_NAME, "p")
-    input_field.send_keys(message)
-    all_buttons = driver.find_elements(By.TAG_NAME, "button")
-    post_btn = [b for b in all_buttons if b.text=="Post"]
-    post_btn[0].click()
-    
+def post_func(user_id):
 
-    
+    with open("post", "r") as f:
+        message = f.read()
 
+        driver.get(f"https://www.linkedin.com/in/{user_id}/overlay/create-post/")
+        input_field = driver.find_element(By.TAG_NAME, "p")
+        input_field.send_keys(message)
+        all_buttons = driver.find_elements(By.TAG_NAME, "button")
+        post_btn = [b for b in all_buttons if b.text == "Post"]
+        post_btn[0].click()
+    
 
 if __name__ == "__main__":
 
-    test_post_message = """
-    Hello there,
-    This is test post message
-    """
-
-    post_func(os.getenv("USER_ID"), test_post_message)
+    post_func(os.getenv("USER_ID"))
