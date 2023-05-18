@@ -53,7 +53,7 @@ def main_func(func):
 
 
 @main_func
-def post_func(user_id):
+def post(user_id):
 
     with open("post", "r") as f:
         message = f.read()
@@ -68,4 +68,4 @@ def post_func(user_id):
 
 if __name__ == "__main__":
 
-    post_func(os.getenv("USER_ID"))
+    post(os.getenv("USER_ID"))
