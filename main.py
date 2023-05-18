@@ -55,7 +55,7 @@ def main_func(func):
 @main_func
 def post(user_id):
 
-    with open("post", "r") as f:
+    with open("post.txt", "r") as f:
         message = f.read()
 
         driver.get(f"https://www.linkedin.com/in/{user_id}/overlay/create-post/")
